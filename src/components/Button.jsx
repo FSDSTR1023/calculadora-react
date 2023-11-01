@@ -1,15 +1,16 @@
 import PropTypes from "prop-types";
+import cx from "classnames";
 
-function Button({ t }) {
-  // Opciones para acceder a las props
-  // function Button({titles, numbers}) {
-  // const { titles, numbers } = props;
-  // props.titles o props.numbers
-  return <button className="m-2 bg-cyan-600 rounded-md text-white p-2">{t}</button>;
-}
-
-Button.propTypes = {
-  t: PropTypes.string,
+export const Button = ({ content, css, handleClick }) => {
+  return (
+    <button onClick={() => handleClick(content)} className={cx("bg-cyan-600 hover:bg-cyan-700 rounded-lg text-white p-2", css)}>
+      {content}
+    </button>
+  );
 };
 
-export default Button;
+Button.propTypes = {
+  content: PropTypes.string,
+  css: PropTypes.string,
+  handleClick: PropTypes.func
+};
