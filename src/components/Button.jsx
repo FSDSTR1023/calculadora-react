@@ -1,15 +1,12 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
-function Button({ t }) {
-  // Opciones para acceder a las props
-  // function Button({titles, numbers}) {
-  // const { titles, numbers } = props;
-  // props.titles o props.numbers
-  return <button>{t}</button>;
+function Button({ onClick, label }) {
+  return <button onClick={onClick}>{label}</button>;
 }
 
 Button.propTypes = {
-  t: PropTypes.string,
+  onClick: PropTypes.func.isRequired,
+  label: PropTypes.string.isRequired
 };
 
 export default Button;
