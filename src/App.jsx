@@ -1,24 +1,57 @@
+import { useState } from "react";
 import "./App.css";
-import Button from "./components/Button";
+import { Button } from "./components/Button";
 
 function App() {
-  // const [selectedNumber, setSelectedNumber] = useState(null);
-  // const [title, setTitle] = useState('');
-  // const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-  const titles = ['Resta', "Suma", "División"];
+  const [calc, setCalc] = useState("");
+  const [result, setResult] = useState(""); //null = valor inicial
+  const dataNum = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const dataOperator = ["+", "-", "/", "*", "."];
 
-  // const handleClick = (num) => {
-  //   setSelectedNumber(num)
-  // }
+  const handleClick = value => {
+    if (
+      dataOperator.includes(value) && calc === "" ||
+      dataOperator.includes(value) && dataOperator.includes(calc.slice(-1)) //like this it's not possible to add more than operator seguidos
+    ) {
+      return
+    }
+    setCalc(calc + value);
+
+    if (!dataOperator.includes(value)) {
+      setResult(eval(calc + value).toString());
+    }
+  }
+
+  const calculate = () => {
+    setCalc(eval(calc).toString());
+  }
+
+  const deleteLast = () => {
+    if (calc == "") {
+      return;
+    }
+    const value = calc.slice(0, -1);
+
+    setCalc(value);
+  }
     
   return (
     <div>
       <h1>Calculadora</h1>
-      {
-        titles.map(title => <Button key={title} t={title} />)
-      }
-      <br />
-      {/* {selectedNumber} */}
+
+      <div className="display">
+        {result ? <span>({result})</span> : ""} {calc || "0"}
+      </div>
+
+
+      {dataNum.map((num, i) => <Button key={i} t={num} handleClick={handleClick} />)}
+
+      {dataOperator.map((op, i) => <Button key={i} t={op} handleClick={handleClick}/>)}
+
+      <Button t={"C"} handleClick={deleteLast} />
+      <Button t={"0"} handleClick={handleClick} />
+      <Button t={"="} handleClick={calculate} />
+
     </div>
   );
 }

@@ -40,3 +40,22 @@
 .read-the-docs {
   color: #888;
 }
+
+.displayOperation {
+  background-color: rgb(217, 221, 226);
+  border: none;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  height: 3em;
+  width: 274px;
+}
+
+.button {
+  background-color: rgb(228, 233, 234);
+  margin: 4px;
+  width: 4em;
+}
+
+.buttonOperation {
+  background-color: rgb(144, 144, 173);
+}
