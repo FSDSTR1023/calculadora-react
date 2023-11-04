@@ -40,7 +40,6 @@ const App = () => {
       setResult(errorMessage)
     }
 
-
   }
 
   return (
@@ -71,9 +70,9 @@ const App = () => {
           <Button value='2' action={printDisplay} textContent='2' />
           <Button value='3' action={printDisplay} textContent='3' />
           <Button value='+' action={printDisplay} textContent='+' dark />
-          <Button value='0' action={printDisplay} textContent='0' double />
-          <Button value='.' action={printDisplay} textContent='.' dark />
-          <Button value='=' action={showResult} textContent='=' dark />
+          <Button value='0' action={printDisplay} textContent='0' />
+          <Button value='.' action={printDisplay} textContent='.' />
+          <Button value='=' action={showResult} textContent='=' dark double />
         </div>
       </div>
     </>
