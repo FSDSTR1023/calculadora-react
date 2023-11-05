@@ -1,56 +1,45 @@
-import "./App.css";
-import Button from "./components/Button";
+import './App.css';
+import Button from './components/Button';
+import Screen from './components/Screen';
+import ButtonClear from './components/ButtonClear';
 
 function App() {
-  // const [selectedNumber, setSelectedNumber] = useState(null);
-  // const [title, setTitle] = useState('');
-  // const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-  const titles = ['Resta', "Suma", "División"];
 
-  // const handleClick = (num) => {
-  //   setSelectedNumber(num)
-  // }
-    
-  return (
-    <div>
-      <h1>Calculadora</h1>
-      {
-        titles.map(title => <Button key={title} t={title} />)
-      }
-      <br />
-      {/* {selectedNumber} */}
+   return (
+    <div className='App'>
+      <h1>Calculadora-React</h1>
+      <div className='contenedor-calculadora'>
+        <Screen/>
+        <div className='fila'>
+          <Button>7</Button>
+          <Button>8</Button>
+          <Button>9</Button>
+          <Button>/</Button>
+        </div>
+        <div className='fila'>
+          <Button>4</Button>
+          <Button>5</Button>
+          <Button>6</Button>
+          <Button>*</Button>
+        </div>
+        <div className='fila'>
+          <Button>1</Button>
+          <Button>2</Button>
+          <Button>3</Button>
+          <Button>-</Button>
+        </div>
+        <div className='fila'>
+          <Button>.</Button>
+          <Button>0</Button>
+          <Button>=</Button>
+          <Button>+</Button>
+        </div>
+        <div className='fila'>
+         <ButtonClear>Clear</ButtonClear>
+        </div>
+      </div>
     </div>
   );
 }
 
 export default App;
-
-
-      {/* <div>
-        Soy el primer div
-      {numbers.map((number, indice) => (
-        <>
-        {(number > 5) && <button key={indice} style={{ backgroundColor: "coral" }}>{number}</button>}
-        {(number <= 5) && <button key={indice} style={{ backgroundColor: "sky" }}>{number}</button>}
-        </>
-      ))}
-      </div> */}
-      {/* <div>
-        Soy el segundo div
-        {numbers.map((number, indice) => {
-          // Return de los números
-          if (number > 5) {
-            return (
-              <button key={indice} style={{ backgroundColor: "coral" }} onClick={() => handleClick(number)}>
-                {number}
-              </button>
-            );
-          } else {
-            return (
-              <button key={indice} style={{ backgroundColor: "sky" }}>
-                {number}
-              </button>
-            );
-          }
-        })}
-      </div> */}

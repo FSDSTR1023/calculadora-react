@@ -1,0 +1,14 @@
+.input {
+    align-items: center;
+    background-color: black;
+    border-radius: 25px;
+    color: white;
+    display: flex;
+    font-size: 40px;
+    font-weight: bold;
+    height: 125px;
+    justify-content: flex-end;
+    margin: 1px soid grey;
+    margin-bottom: 30px;
+    width: 100%;
+  }
