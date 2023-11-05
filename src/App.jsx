@@ -1,56 +1,70 @@
-import "./App.css";
-import Button from "./components/Button";
+import './App.css';
+import { useState } from 'react';
+import Boton from './componentes/Boton';
+import Pantalla from './componentes/Pantalla';
+import BotonReset from './componentes/BotonReset'; 
+import { evaluate } from 'mathjs'; //*importamos la libreria mathjs para evaluar el input
 
 function App() {
-  // const [selectedNumber, setSelectedNumber] = useState(null);
-  // const [title, setTitle] = useState('');
-  // const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-  const titles = ['Resta', "Suma", "División"];
 
-  // const handleClick = (num) => {
-  //   setSelectedNumber(num)
-  // }
-    
+  const [input, setInput] = useState('');
+
+
+  const agregarInput = val => {    
+    setInput(input + val);                  
+  };
+
+
+  function resultado() {
+    if(input){
+      setInput(evaluate(input));
+    }else{
+      alert("Agregue antes valores a calcular.")
+    }
+  };
+
+
+  
   return (
-    <div>
-      <h1>Calculadora</h1>
-      {
-        titles.map(title => <Button key={title} t={title} />)
-      }
-      <br />
-      {/* {selectedNumber} */}
+    <div className="App">
+      <div className='contenedor-calculadora'>
+        <Pantalla input={input}/>
+        <div className="fila">
+          <Boton manejarClic={agregarInput}>1</Boton>
+          <Boton manejarClic={agregarInput}>2</Boton>
+          <Boton manejarClic={agregarInput}>3</Boton>
+          <Boton manejarClic={agregarInput}>+</Boton>
+        </div>
+        <div className="fila">
+          <Boton manejarClic={agregarInput}>4</Boton>
+          <Boton manejarClic={agregarInput}>5</Boton>
+          <Boton manejarClic={agregarInput}>6</Boton>   
+          <Boton manejarClic={agregarInput}>-</Boton>
+        </div>
+        <div className="fila">
+          <Boton manejarClic={agregarInput}>7</Boton>
+          <Boton manejarClic={agregarInput}>8</Boton>
+          <Boton manejarClic={agregarInput}>9</Boton>
+          <Boton manejarClic={agregarInput}>*</Boton>  
+        </div>
+        <div className="fila">
+          <Boton manejarClic={resultado}>=</Boton>
+          <Boton manejarClic={agregarInput}>0</Boton>
+          <Boton manejarClic={agregarInput}>.</Boton>
+          <Boton manejarClic={agregarInput}>/</Boton>    
+        </div>
+        <div className="fila">
+          <BotonReset manejarReset={() => setInput('') }> 
+            BORRAR
+          </BotonReset> 
+        </div>
+      </div>
     </div>
   );
 }
 
-export default App;
+export default App
 
-
-      {/* <div>
-        Soy el primer div
-      {numbers.map((number, indice) => (
-        <>
-        {(number > 5) && <button key={indice} style={{ backgroundColor: "coral" }}>{number}</button>}
-        {(number <= 5) && <button key={indice} style={{ backgroundColor: "sky" }}>{number}</button>}
-        </>
-      ))}
-      </div> */}
-      {/* <div>
-        Soy el segundo div
-        {numbers.map((number, indice) => {
-          // Return de los números
-          if (number > 5) {
-            return (
-              <button key={indice} style={{ backgroundColor: "coral" }} onClick={() => handleClick(number)}>
-                {number}
-              </button>
-            );
-          } else {
-            return (
-              <button key={indice} style={{ backgroundColor: "sky" }}>
-                {number}
-              </button>
-            );
-          }
-        })}
-      </div> */}
+/** linea 57 , método función flecha utilizado para limpiar el input. 
+    linea 20, función "evaluate" del paquete mathjs, importado en linea 6, instalado desde la terminal
+    (npm install mathjs)**/
