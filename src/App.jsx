@@ -13,7 +13,7 @@ function App() {
     
   return (
     <div>
-      <h1>Calculadora</h1>
+      <h1 className="text-red-400">Calculadora</h1>
       {
         titles.map(title => <Button key={title} t={title} />)
       }
