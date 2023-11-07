@@ -1,15 +1,36 @@
-import PropTypes from "prop-types";
+export default function Button({value, operations, setOperations, setResult}) {
 
-function Button({ t }) {
-  // Opciones para acceder a las props
-  // function Button({titles, numbers}) {
-  // const { titles, numbers } = props;
-  // props.titles o props.numbers
-  return <button>{t}</button>;
+	const handleClick = () => {
+
+		const operationSymbols = ['/', '*', '-', '+']
+		const lastValue = operations.slice(-1)
+
+		if(value==='='){
+			try{
+				setResult(eval(operations.replace('%', '/100')))
+			}catch{
+				setResult('Syntax Error')
+			}
+		}
+		else if(value==='←') setOperations(operations => operations.slice(0,-1))
+		else if(value==='C'){
+			setResult('0')
+			setOperations('')
+		}else if(operationSymbols.includes(value) && operationSymbols.includes(lastValue)){
+			setOperations(operations => operations.slice(0,-1)+value)
+		}else{
+			setOperations(operations =>
+			operations += value
+			)
+		}
+	}
+
+	return (
+		<button
+			className="button"
+			onClick={handleClick}
+		>
+		{value}
+		</button>
+	)
 }
-
-Button.propTypes = {
-  t: PropTypes.string,
-};
-
-export default Button;
