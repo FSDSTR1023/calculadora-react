@@ -1,56 +1,71 @@
 import "./App.css";
-import Button from "./components/Button";
+import Screen from './componentes/Screen';
+import Boton from './componentes/Boton';
+import BotonReset from './componentes/BotonReset';
+import './hojas-de-estilo/Boton.css';
+import './hojas-de-estilo/Screen.css';
+import './hojas-de-estilo/BotonReset.css';
+import { useState } from "react";
+import { evaluate } from "mathjs";
 
+ //  Posar la fletxa de borrar !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 function App() {
-  // const [selectedNumber, setSelectedNumber] = useState(null);
-  // const [title, setTitle] = useState('');
-  // const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-  const titles = ['Resta', "Suma", "División"];
+  const [input, setInput] = useState('');
 
-  // const handleClick = (num) => {
-  //   setSelectedNumber(num)
-  // }
-    
+  const agregarInput = valor => {
+    setInput(input + valor);
+
+  }
+  const calcularResultado = () => {
+    if (input) {
+      setInput(evaluate(input));
+    } else {
+      alert("Por favor ejecute una operación.")
+    }
+   
+  }
+
   return (
-    <div>
-      <h1>Calculadora</h1>
-      {
-        titles.map(title => <Button key={title} t={title} />)
-      }
-      <br />
-      {/* {selectedNumber} */}
+    <div className='App'>
+      <div className="contenedor-calculadora">
+        <Screen input={input}/>
+        <div className="fila">
+          <Boton darClick={agregarInput}>1</Boton>
+          <Boton darClick={agregarInput}>2</Boton>
+          <Boton darClick={agregarInput}>3</Boton>
+          <Boton darClick={agregarInput}>+</Boton>
+        </div>
+        <div className="fila">
+          <Boton darClick={agregarInput}>4</Boton>
+          <Boton darClick={agregarInput}>5</Boton>
+          <Boton darClick={agregarInput}>6</Boton>
+          <Boton darClick={agregarInput}>-</Boton>
+        </div>
+        <div className="fila">
+          <Boton darClick={agregarInput}>7</Boton>
+          <Boton darClick={agregarInput}>8</Boton>
+          <Boton darClick={agregarInput}>9</Boton>
+          <Boton darClick={agregarInput}>*</Boton>
+        </div>
+        <div className="fila">
+          <Boton darClick={calcularResultado}>=</Boton>
+          <Boton darClick={agregarInput}>0</Boton>
+          <Boton darClick={agregarInput}>.</Boton>
+          <Boton darClick={agregarInput}>/</Boton>
+        </div>
+        <div className="fila">
+
+        <BotonReset hacerReset={() => setInput('')}>
+          Limpiar
+        </BotonReset>
+
+        </div>
+      </div>
     </div>
-  );
+  )
 }
 
 export default App;
 
 
-      {/* <div>
-        Soy el primer div
-      {numbers.map((number, indice) => (
-        <>
-        {(number > 5) && <button key={indice} style={{ backgroundColor: "coral" }}>{number}</button>}
-        {(number <= 5) && <button key={indice} style={{ backgroundColor: "sky" }}>{number}</button>}
-        </>
-      ))}
-      </div> */}
-      {/* <div>
-        Soy el segundo div
-        {numbers.map((number, indice) => {
-          // Return de los números
-          if (number > 5) {
-            return (
-              <button key={indice} style={{ backgroundColor: "coral" }} onClick={() => handleClick(number)}>
-                {number}
-              </button>
-            );
-          } else {
-            return (
-              <button key={indice} style={{ backgroundColor: "sky" }}>
-                {number}
-              </button>
-            );
-          }
-        })}
-      </div> */}
+   

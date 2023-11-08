@@ -12,3 +12,6 @@ Currently, two official plugins are available:
 1. Clonar repo
 2. npm install
 3. npm run dev
+<!-- 
+He instalado npm mathjs. Hay que ejecutarlo para que funcionen las operaciones.
+npm install mathjs!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->

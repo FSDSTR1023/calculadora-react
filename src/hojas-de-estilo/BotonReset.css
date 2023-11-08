@@ -1,0 +1,19 @@
+.boton-reset {
+    height: 80px;
+    font-size: 1.6em;
+    display: flex;
+    flex: 1;
+    background-color: red;
+    margin-top: 8px;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 15px;
+    cursor: pointer;      
+  }
+  
+  .boton-reset:hover {
+    background-color: #ebb000;
+  }
