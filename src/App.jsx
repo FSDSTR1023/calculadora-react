@@ -23,11 +23,7 @@ function App() {
     setOperacion("0");
     setResultado("0");
     setCadenaOperacionVacia(true);
-    // actualizarPantalla();
   }
-
-  // let pantallaOperacion=document.getElementById("operacion");
-  // let pantallaResultado=document.getElementById("resultado");
 
   const borrar = () => {
       if(!cadenaOperacionVacia) {
@@ -39,7 +35,6 @@ function App() {
       } else {
         setOperacion("0");
       }
-      // actualizarPantalla();
   }
 
   const addElement = (element) => {
@@ -56,20 +51,13 @@ function App() {
       else {
         setOperacion(operacion+element);
       }
-      // actualizarPantalla();
   }
 
   const resolver = () => {
       // resultado=eval(operacion);
       setResultado(new Function('return ' + operacion)());
       setCadenaOperacionVacia(true);
-      // actualizarPantalla();
   }
-
-  // function actualizarPantalla() {
-  //     pantallaOperacion.textContent=operacion;
-  //     pantallaResultado.textContent=resultado;
-  // }
 
   const isOperator = (element) => {
       return element=="/" || element=="*" 
