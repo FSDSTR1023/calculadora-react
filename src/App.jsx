@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./App.css";
 import ButtonNumber from "./components/ButtonNumber";
+
+// let cadenaOperacionVacia=true;
 
 function App() {
   // const [selectedNumber, setSelectedNumber] = useState(null);
@@ -8,20 +10,16 @@ function App() {
   // const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   const numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
 
-  const [operacion, setOperacion] = useState('');
-  const [resultado, setResultado] = useState('');
-  const [cadenaOperacionVacia, setCadenaOperacionVacia] = useState('');
+  const [operacion, setOperacion] = useState("0");
+  const [resultado, setResultado] = useState("0");
+  const [cadenaOperacionVacia, setCadenaOperacionVacia] = useState(true);
   // const handleClick = (num) => {
   //   setSelectedNumber(num)
   // }
 
-  useEffect(() => {
-    setOperacion("0");
-    setResultado("0");
-    setCadenaOperacionVacia(true);
-  }, []);
 
-  function clear() {
+    
+  const clear = () => {
     setOperacion("0");
     setResultado("0");
     setCadenaOperacionVacia(true);
@@ -31,7 +29,7 @@ function App() {
   // let pantallaOperacion=document.getElementById("operacion");
   // let pantallaResultado=document.getElementById("resultado");
 
-  function borrar() {
+  const borrar = () => {
       if(!cadenaOperacionVacia) {
           setOperacion(operacion.substring(0, operacion.length-1));
           if(operacion.length==0) {
@@ -44,7 +42,7 @@ function App() {
       // actualizarPantalla();
   }
 
-  function addElement(element) {
+  const addElement = (element) => {
       if(cadenaOperacionVacia) {
           if (isOperator(element)) {
             setOperacion(resultado+element);
@@ -61,7 +59,7 @@ function App() {
       // actualizarPantalla();
   }
 
-  function resolver() {
+  const resolver = () => {
       // resultado=eval(operacion);
       setResultado(new Function('return ' + operacion)());
       setCadenaOperacionVacia(true);
@@ -73,7 +71,7 @@ function App() {
   //     pantallaResultado.textContent=resultado;
   // }
 
-  function isOperator(element) {
+  const isOperator = (element) => {
       return element=="/" || element=="*" 
           || element=="-" || element=="+"
           || element==".";
@@ -89,16 +87,16 @@ function App() {
             <p id="operacion">{operacion}</p>
         </div>
         <div id="botones">
-            <button className="boton operador" id="bc" type="button" onClick={()=>{clear()}}> C </button>
+            <button className="boton operador" id="bc" type="button" onClick={clear}> C </button>
             <button className="boton operador" id="bborrar" type="button" onClick={borrar}> 🡐 </button>
             <button className="boton operador" id="bequals" type="button" onClick={resolver}> = </button>
-            <button className="boton operador escritor" id="bdiv" value="/" type="button" onClick={addElement('/')}> % </button>
-            <button className="boton operador escritor" id="bx" value="*" type="button" onClick={addElement('*')}> x </button>
-            <button className="boton operador escritor" id="bresta" value="-" type="button" onClick={addElement('-')}> - </button>
-            <button className="boton operador escritor" id="bsuma" value="+" type="button" onClick={addElement('+')}> + </button>
-            <button className="boton numero escritor" id="bdot" value="." type="button" onClick={addElement('.')}> . </button>
+            <button className="boton operador escritor" id="bdiv" value="/" type="button" onClick={()=>{addElement("/")}}> % </button>
+            <button className="boton operador escritor" id="bx" value="*" type="button" onClick={()=>{addElement("*")}}> x </button>
+            <button className="boton operador escritor" id="bresta" value="-" type="button" onClick={()=>{addElement("-")}}> - </button>
+            <button className="boton operador escritor" id="bsuma" value="+" type="button" onClick={()=>{addElement("+")}}> + </button>
+            <button className="boton numero escritor" id="bdot" value="." type="button" onClick={()=>{addElement(".")}}> . </button>
             {
-              numbers.map(number => <ButtonNumber key={number} t={number} classes={"numero escritor"} funcionalidad={addElement(number)}/>)
+              numbers.map(number => <ButtonNumber key={number} t={number} classes={"numero escritor"} funcionalidad={()=>{addElement(number)}}/>)
             }
         </div>
       </div>
