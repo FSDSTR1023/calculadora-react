@@ -1,15 +1,12 @@
-import PropTypes from "prop-types";
+import "../Hojas de estilo/Calculator.css";
 
-function Button({ t }) {
-  // Opciones para acceder a las props
-  // function Button({titles, numbers}) {
-  // const { titles, numbers } = props;
-  // props.titles o props.numbers
-  return <button>{t}</button>;
+const Button = (props) => {
+const {content, result} = props;
+//const handleClick = () => {}
+
+  return (
+    <button onClick={() => result(content)}>{content}</button>
+  )
 }
-
-Button.propTypes = {
-  t: PropTypes.string,
-};
 
 export default Button;
