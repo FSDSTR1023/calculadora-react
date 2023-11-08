@@ -1,56 +1,56 @@
+import { useState } from 'react'
 import "./App.css";
-import Button from "./components/Button";
+import "./index.css";
 
 function App() {
-  // const [selectedNumber, setSelectedNumber] = useState(null);
-  // const [title, setTitle] = useState('');
-  // const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-  const titles = ['Resta', "Suma", "División"];
 
-  // const handleClick = (num) => {
-  //   setSelectedNumber(num)
-  // }
+  const [result, setResult] = useState("")
+const handleClick = e => setResult(result.concat(e.target.id))
+  const clear = () => setResult("")
+  const deleteEl = () => setResult(result.slice(0, -1));
+  const calculate = () => {
+    try {
+      setResult(eval(result).toString())
+    } catch (error) {
+      setResult("Error")
+    }
+  }
     
   return (
-    <div>
-      <h1>Calculadora</h1>
-      {
-        titles.map(title => <Button key={title} t={title} />)
-      }
-      <br />
-      {/* {selectedNumber} */}
+    <div className='Calculator'>
+        <input type="text" value={result} disabled />
+        <div className="buttons">
+
+          <button className='operator' onClick={clear}>C</button>
+          <button className='operator' onClick={deleteEl}>DE</button>
+
+          <button id='.' className='operator' onClick={handleClick}>.</button>
+          <button id='/' className='operator' onClick={handleClick}>/</button>
+
+          <button id='7' className='number' onClick={handleClick}>7</button>
+          <button id='8' className='number' onClick={handleClick}>8</button>
+          <button id='9' className='number' onClick={handleClick}>9</button>
+
+          <button id='*' className='operator' onClick={handleClick}>*</button>
+          
+          <button id='4' className='number' onClick={handleClick}>4</button>
+          <button id='5' className='number' onClick={handleClick}>5</button>
+          <button id='6' className='number' onClick={handleClick}>6</button>
+
+          <button id='-' className='operator' onClick={handleClick}>-</button>
+
+          <button id='1' className='number' onClick={handleClick}>1</button>
+          <button id='2' className='number' onClick={handleClick}>2</button>
+          <button id='3' className='number' onClick={handleClick}>3</button>
+
+          <button id='+' className='operator' onClick={handleClick}>+</button>
+
+          <button id='0' className='number' onClick={handleClick}>0</button>
+
+          <button id='=' className='operator col-span-3' onClick={calculate}>=</button>
+        </div>
     </div>
   );
 }
 
 export default App;
-
-
-      {/* <div>
-        Soy el primer div
-      {numbers.map((number, indice) => (
-        <>
-        {(number > 5) && <button key={indice} style={{ backgroundColor: "coral" }}>{number}</button>}
-        {(number <= 5) && <button key={indice} style={{ backgroundColor: "sky" }}>{number}</button>}
-        </>
-      ))}
-      </div> */}
-      {/* <div>
-        Soy el segundo div
-        {numbers.map((number, indice) => {
-          // Return de los números
-          if (number > 5) {
-            return (
-              <button key={indice} style={{ backgroundColor: "coral" }} onClick={() => handleClick(number)}>
-                {number}
-              </button>
-            );
-          } else {
-            return (
-              <button key={indice} style={{ backgroundColor: "sky" }}>
-                {number}
-              </button>
-            );
-          }
-        })}
-      </div> */}
