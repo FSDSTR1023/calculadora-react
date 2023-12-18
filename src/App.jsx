@@ -5,17 +5,21 @@ const App = () => {
   const [result, setResult] = useState("");
 
   const handleButtonClick = (value) => {
-    if (value === "=") {
+    if (value === '=') {
       try {
-        setResult(eval(input).toString());
+        const evalResult = eval(input);
+        setInput(evalResult.toString());
+        setResult('');
       } catch (error) {
-        setResult("Error");
+        setInput('');
+        setResult('Error');
       }
-    } else if (value === "C") {
-      setInput("");
-      setResult("");
+    } else if (value === 'C') {
+      setInput('');
+      setResult('');
     } else {
       setInput(input + value);
+      setResult('');
     }
   };
 
