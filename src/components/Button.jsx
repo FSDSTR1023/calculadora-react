@@ -5,7 +5,7 @@ function Button({ t }) {
   // function Button({titles, numbers}) {
   // const { titles, numbers } = props;
   // props.titles o props.numbers
-  return <button>{t}</button>;
+  return <button className="m-2 bg-cyan-600 rounded-md text-white p-2">{t}</button>;
 }
 
 Button.propTypes = {
