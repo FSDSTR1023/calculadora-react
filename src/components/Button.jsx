@@ -1,15 +1,18 @@
-import PropTypes from "prop-types";
+import '../styles-components/Button.css';
 
-function Button({ t }) {
-  // Opciones para acceder a las props
-  // function Button({titles, numbers}) {
-  // const { titles, numbers } = props;
-  // props.titles o props.numbers
-  return <button>{t}</button>;
+
+function Button(props) {
+
+  const esOperador = valor => {
+    return isNaN(valor) && (valor !== '.') && (valor !== '='); 
+  };
+
+  return (
+    <div
+      className = {`boton-contenedor ${esOperador(props) ? 'operador' : ''}`.trimEnd()}>
+      {props}
+    </div>
+  );
 }
-
-Button.propTypes = {
-  t: PropTypes.string,
-};
 
 export default Button;
